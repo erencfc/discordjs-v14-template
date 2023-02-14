@@ -49,7 +49,7 @@ module.exports = async (client, interaction) => {
     } catch (error) {
         console.error(error);
         let reply = {
-            content: "Bilinmeyen bir hata oluştu!",
+            content: "An error occurred while executing this command.",
             ephemeral: true,
         };
 
