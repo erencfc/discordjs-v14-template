@@ -94,6 +94,7 @@ exports.help = {
 };
 
 exports.data = new Discord.SlashCommandBuilder()
+    .setDefaultMemberPermissions(0)
     .setName(this.help.name)
     .setDescription(this.help.description)
     .addStringOption((option) =>
