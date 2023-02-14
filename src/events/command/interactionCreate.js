@@ -15,7 +15,7 @@ module.exports = async (client, interaction) => {
 
     let settings = cmd.props.settings;
     let perm = settings.perm;
-    if (await cooldown_control(client, interaction, settings.cooldown)) return;
+
     if (interaction.user.id != client.config.ownerID) {
         let reply = async (message) =>
             await interaction.reply({
