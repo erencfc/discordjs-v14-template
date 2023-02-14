@@ -84,7 +84,7 @@ exports.run = async function (client, interaction) {
 exports.settings = {
     enabled: true,
     onlyOwner: true,
-    perm: "",
+    perm: [],
 };
 
 exports.help = {

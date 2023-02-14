@@ -22,7 +22,7 @@ exports.run = async function (client, interaction) {
 exports.settings = {
     enabled: true,
     onlyOwner: false,
-    perm: "",
+    perm: [],
     cooldown: 10000,
 };
 

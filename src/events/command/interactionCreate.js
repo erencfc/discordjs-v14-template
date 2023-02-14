@@ -31,10 +31,32 @@ module.exports = async (client, interaction) => {
             return reply("This command is available only to the bot owner.");
 
         // Permission Control
-        if (perm && !interaction.memberPermissions.has(perm))
-            return reply(
-                `You need \`${perm}\` permission to use this command.`
+        if (perm.length > 0) {
+            let roleNames = perm.filter(
+                (x) => x.charAt(0).toUpperCase() !== x.charAt(0)
             );
+            let roles = roleNames.map((name) => client.config.roles[name]);
+            let permissions = perm.filter(
+                (x) => x.charAt(0).toUpperCase() === x.charAt(0)
+            );
+
+            let roles_string = roles.map((r) => `<@&${r}>`).join("\n");
+            let permissions_string = permissions
+                .map((p) => `\`${p}\``)
+                .join("\n");
+
+            if (
+                !roles.some((x) =>
+                    interaction.member.roles.cache.some((r) => r.id === x)
+                ) &&
+                permissions &&
+                !permissions.some((x) => interaction.member.permissions.has(x))
+            )
+                return reply(`You need one of the following permissions:
+
+            ${roleNames.length > 0 ? roles_string : ""}
+            ${permissions.length > 0 ? permissions_string : ""}`);
+        }
 
         // Cooldown Control
         if (
